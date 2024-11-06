@@ -5,27 +5,27 @@ pipeline {
         stage('SCM Checkout') {
             steps {
                 retry(3) {
-                    git branch: 'main', url: 'https://github.com/AvishkaPriyasad/test-node'
+                    git branch: 'main', url: 'https://github.com/AvishkaPriyasad/GitHub-Docker-and-Jenkins-Cl-CD-Pipeline.git'
                 }
             }
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t adomicarts/nodeapp-cuban:${BUILD_NUMBER} .'
+                sh 'docker build -t avishkapriyasad/nodeapp-test:${BUILD_NUMBER} .'
             }
         }
         stage('Login to Docker Hub') {
             steps {
-                withCredentials([string(credentialsId: 'samin-docker', variable: 'samindocker')]) {
-                    script {  
-                        sh "docker login -u adomicarts -p '${samindocker}'"
-                    }
+                withCredentials([string(credentialsId: 'test-dockerpassword', variable: 'test-dockerhubpass')]) {
+                    
+                        bat "docker login -u avishkapriyasad -p %test-dockerhubpass%"
+                    
                 }
             }
         }
         stage('Push Image') {
             steps {
-                sh "docker push adomicarts/nodeapp-cuban:${BUILD_NUMBER}"
+                sh "docker push avishkapriyasad/nodeapp-test:${BUILD_NUMBER}"
             }
         }
     }
