@@ -1,6 +1,6 @@
 # CI/CD Pipeline with Docker and Jenkins
 
-Setting up a Continuous Integration/Continuous Deployment (CI/CD) pipeline using Docker and Jenkins. The pipeline automates the process of building, testing, and deploying applications, ensuring efficiency and consistency in software development workflows.
+Implementing a CI/CD pipeline with Docker and Jenkins to automate building, testing, and deploying applications, promoting efficiency and consistency across software development workflows.
 
 ## Overview
 
